@@ -5,16 +5,19 @@
 
 // Function to print an array
 void printArray(int array[], int size) {
-    for (int i = 0; i < size; i++) {
+    int i;  // declare at top for Turbo C++
+    for (i = 0; i < size; i++) {
         printf("%d ", array[i]);
     }
     printf("\n");
 }
 
 void insertionSort(int array[], int size) {
-    for (int step = 1; step < size; step++) {
-        int key = array[step];
-        int j = step - 1;
+    int step, key, j;  // declare all here
+
+    for (step = 1; step < size; step++) {
+        key = array[step];
+        j = step - 1;
 
         // Compare key with each element on the left of it until an element smaller than
         // it is found.
@@ -29,10 +32,12 @@ void insertionSort(int array[], int size) {
 
 // Driver code
 int main() {
+    int data[] = {9, 5, 1, 4, 3};
+    int size;
+
     clrscr(); // Clear screen
 
-    int data[] = {9, 5, 1, 4, 3};
-    int size = sizeof(data) / sizeof(data[0]);
+    size = sizeof(data) / sizeof(data[0]);
     
     insertionSort(data, size);
     
