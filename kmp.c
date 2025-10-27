@@ -3,9 +3,12 @@
 #include <conio.h>
 
 void prefixSuffixArray(char *pat, int M, int *pps) {
-    int length = 0;     // length of the previous longest prefix suffix
-    pps[0] = 0;         // first value is always 0
-    int i = 1;
+    int length;      // declare all variables at the top
+    int i;
+
+    length = 0;      // length of the previous longest prefix suffix
+    pps[0] = 0;      // first value is always 0
+    i = 1;
 
     while (i < M) {
         if (pat[i] == pat[length]) {
@@ -24,14 +27,17 @@ void prefixSuffixArray(char *pat, int M, int *pps) {
 }
 
 void KMPAlgorithm(char *text, char *pattern) {
-    int M = strlen(pattern);
-    int N = strlen(text);
-    int pps[M]; // prefix-suffix array
+    int M, N;
+    int pps[100];     // fixed size array for Turbo C++
+    int i, j;
+
+    M = strlen(pattern);
+    N = strlen(text);
 
     prefixSuffixArray(pattern, M, pps);
 
-    int i = 0; // index for text[]
-    int j = 0; // index for pattern[]
+    i = 0; // index for text[]
+    j = 0; // index for pattern[]
 
     while (i < N) {
         if (pattern[j] == text[i]) {
@@ -52,10 +58,10 @@ void KMPAlgorithm(char *text, char *pattern) {
 }
 
 int main() {
-    clrscr(); // Clear screen
-
     char text[] = "xyztrwqxyzfg";
     char pattern[] = "xyz";
+
+    clrscr(); // Clear screen
 
     printf("The pattern is found in the text at the following index:\n");
     KMPAlgorithm(text, pattern);
