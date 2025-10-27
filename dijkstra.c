@@ -1,6 +1,7 @@
 // Dijkstra's Algorithm in C
 
 #include <stdio.h>
+#include <conio.h>
 #define INFINITY 9999
 #define MAX 10
 
@@ -30,12 +31,16 @@ void Dijkstra(int Graph[MAX][MAX], int n, int start) {
 
   while (count < n - 1) {
     mindistance = INFINITY;
+    nextnode = -1;   // ✅ initialize nextnode
 
     for (i = 0; i < n; i++)
       if (distance[i] < mindistance && !visited[i]) {
         mindistance = distance[i];
         nextnode = i;
       }
+
+    if (nextnode == -1)  // ✅ safety check
+      break;
 
     visited[nextnode] = 1;
     for (i = 0; i < n; i++)
@@ -53,6 +58,7 @@ void Dijkstra(int Graph[MAX][MAX], int n, int start) {
       printf("\nDistance from source to %d: %d", i, distance[i]);
     }
 }
+
 int main() {
   int Graph[MAX][MAX], i, j, n, u;
   n = 7;
@@ -116,5 +122,6 @@ int main() {
   u = 0;
   Dijkstra(Graph, n, u);
 
+  getch();   // ✅ keeps output screen open
   return 0;
 }
