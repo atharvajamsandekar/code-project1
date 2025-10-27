@@ -15,14 +15,14 @@ int Bellman_Ford(int G[20][20] , int V, int E, int edge[20][2])
         for(k=0;k<E;k++)
         {
             u = edge[k][0] , v = edge[k][1] ;
-            if(distance[u]+G[u][v] < distance[v])
+            if(distance[u] != 1000 && distance[u]+G[u][v] < distance[v])    // ✅ added check for infinity
                 distance[v] = distance[u] + G[u][v] , parent[v]=u ;
         }
     }
     for(k=0;k<E;k++)
     {
         u = edge[k][0] , v = edge[k][1] ;
-        if(distance[u]+G[u][v] < distance[v])
+        if(distance[u] != 1000 && distance[u]+G[u][v] < distance[v])       // ✅ added check again
             flag = 0 ;
     }
     if(flag)
@@ -34,9 +34,9 @@ int Bellman_Ford(int G[20][20] , int V, int E, int edge[20][2])
 
 int main()
 {
-    clrscr(); // Clear screen
     int V,edge[20][2],G[20][20],i,j,k=0;
     printf("BELLMAN FORD\n");
+    clrscr(); // ✅ moved after print so no crash
     printf("Enter no. of vertices: ");
     scanf("%d",&V);
     printf("Enter graph in matrix form:\n");
